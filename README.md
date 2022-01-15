@@ -1,2 +1,0 @@
-# dingbot
-dingbot doc
