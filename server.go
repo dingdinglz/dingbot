@@ -11,11 +11,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/template/html/v2"
 )
 
 func ServerInit() {
 	rootPath, _ := os.Getwd()
-	MainServer = fiber.New(fiber.Config{})
+	tEngine := html.New(filepath.Join(rootPath, "web", "index"), ".html")
+	tEngine.ShouldReload = true
+	MainServer = fiber.New(fiber.Config{Views: tEngine})
 	MainServer.Use(recover.New(), logger.New())
 	MainServer.Static("/", filepath.Join(rootPath, "web", "public"))
 }
@@ -41,6 +44,7 @@ func ServerInitRun() {
 }
 
 func ServerCommonRun() {
+	MainServer.Get("/", route.IndexRoute)
 	err := MainServer.Listen("0.0.0.0:" + strconv.Itoa(appConfig.Port))
 	if err != nil {
 		tool.ErrorOut("startServer", "Listen", err)

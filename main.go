@@ -1,9 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/dingdinglz/dingbot/route"
+)
 
 func main() {
-	fmt.Println("dingbot " + Version + " Copyright © dinglz 2024")
+	fmt.Println("dingbot " + route.Version + " Copyright © dinglz 2024")
 	ConfigInit()
 	ServerInit()
 	ServerRun()
