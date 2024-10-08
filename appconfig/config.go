@@ -1,4 +1,4 @@
-package main
+package appconfig
 
 import (
 	"encoding/json"
@@ -13,10 +13,10 @@ func ConfigInit() {
 	tool.DictoryCreateN(filepath.Join(rootPath, "data"))
 	if !tool.FileIsExsits(filepath.Join(rootPath, "data", "config.json")) {
 		Init = true
-		appConfig.Port = 7000
+		AppConfigVar.Port = 7000
 	} else {
 		Init = false
 		jsonText, _ := os.ReadFile(filepath.Join(rootPath, "data", "config.json"))
-		json.Unmarshal(jsonText, &appConfig)
+		json.Unmarshal(jsonText, &AppConfigVar)
 	}
 }

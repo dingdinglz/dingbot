@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	"github.com/dingdinglz/dingbot/route"
+	"github.com/dingdinglz/dingbot/appconfig"
 )
 
 func main() {
-	fmt.Println("dingbot " + route.Version + " Copyright © dinglz 2024")
-	ConfigInit()
+	fmt.Println("dingbot " + appconfig.Version + " Copyright © dinglz 2024")
+	appconfig.ConfigInit()
 	ServerInit()
 	ServerRun()
 }
