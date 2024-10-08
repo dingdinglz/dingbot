@@ -16,40 +16,18 @@
       <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
         <i class="layui-icon layui-icon-spread-left"></i>
       </li>
-      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 1</a></li>
-      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 2</a></li>
-      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 3</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">nav groups</a>
-        <dl class="layui-nav-child">
-          <dd><a href="javascript:;">menu 11</a></dd>
-          <dd><a href="javascript:;">menu 22</a></dd>
-          <dd><a href="javascript:;">menu 33</a></dd>
-        </dl>
-      </li>
+      <li class="layui-nav-item layui-hide-xs"><a href="https://github.com/dingdinglz/dingbot">项目主页</a></li>
     </ul>
   </div>
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       <ul class="layui-nav layui-nav-tree" lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">menu group 1</a>
+          <a class="" href="javascript:;">机器人</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">menu 1</a></dd>
-            <dd><a href="javascript:;">menu 2</a></dd>
-            <dd><a href="javascript:;">menu 3</a></dd>
-            <dd><a href="javascript:;">the links</a></dd>
+            <dd id="page-bot"><a href="/">账号设置</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">menu group 2</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">list 1</a></dd>
-            <dd><a href="javascript:;">list 2</a></dd>
-            <dd><a href="javascript:;">超链接</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item"><a href="javascript:;">click menu item</a></li>
         <li class="layui-nav-item"><a href="javascript:;">the links</a></li>
       </ul>
     </div>
@@ -64,5 +42,8 @@
   </div>
 </div>
 <script src="/layui/layui.js"></script>
+<script>
+  layui.$("#page-{{.Page}}").addClass("layui-this");
+</script>
 </body>
 </html>
