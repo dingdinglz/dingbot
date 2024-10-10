@@ -31,3 +31,13 @@ func BotFetchQRcode(c *fiber.Ctx) error {
 	b := base64.StdEncoding.EncodeToString(res)
 	return c.SendString("data:image/png;base64," + b)
 }
+
+func BotIsLogin(c *fiber.Ctx) error {
+	if bot.DingQQBot == nil {
+		return JsonMessage(c, 0, "no")
+	}
+	if bot.DingQQBot.Online.Load() {
+		return JsonMessage(c, 0, "yes")
+	}
+	return JsonMessage(c, 0, "no")
+}

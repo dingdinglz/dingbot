@@ -1,8 +1,21 @@
 <script>
+    function TurnToLogin()
+    {
+        layui.$("#login_btn").addClass("layui-btn-disabled");
+        layui.$("#login_btn").click(function(){
+            layui.layer.alert("已登录！无须重复登录。");
+        });
+    }
     layui.$(document).ready(function(){
         layui.$.get("/api/get/bot",function(data,status){
         layui.$("#username_input").val(data.username);
         layui.$("#password_input").val(data.password);
+    });
+    layui.$.get("/api/bot/islogin",function(data,status){
+        if(data.message == "yes")
+        {
+            TurnToLogin();
+        }   
     });
     });
     function SaveBotConfig()
@@ -11,8 +24,13 @@
     }
     function BotLogin()
     {
+        if(layui.$.hasClass("layui-btn-disabled"))
+        {
+            return;
+        }
         layui.$.get("/api/bot/login",function(){
             layui.layer.closeAll();
+            TurnToLogin();
             layui.layer.alert("登录成功！");
         });
         layui.$.get("/api/bot/qrcode",function(data,status){
@@ -58,7 +76,7 @@
 <div class="layui-card-body">
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
-        <button class="layui-btn layui-bg-blue" onclick="BotLogin()">登录</button>
+        <button class="layui-btn layui-bg-blue" onclick="BotLogin()" id="login_btn">登录</button>
     </div>
 </div>
 </div>

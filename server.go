@@ -58,6 +58,7 @@ func ServerCommonRun() {
 	apiBotRoute := apiRoute.Group("/bot")
 	apiBotRoute.Get("/login", route.BotLoginRoute)
 	apiBotRoute.Get("/qrcode", route.BotFetchQRcode)
+	apiBotRoute.Get("/islogin", route.BotIsLogin)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {
