@@ -1,3 +1,33 @@
+<script>
+    layui.$(document).ready(function(){
+        layui.$.get("/api/get/bot",function(data,status){
+        layui.$("#username_input").val(data.username);
+        layui.$("#password_input").val(data.password);
+    });
+    });
+    function SaveBotConfig()
+    {
+        layui.$.post("/api/save/bot",{username:layui.$("#username_input").val(),password:layui.$("#password_input").val()});
+    }
+    function BotLogin()
+    {
+        layui.$.get("/api/bot/login",function(){
+            layui.layer.closeAll();
+            layui.layer.alert("登录成功！");
+        });
+        layui.$.get("/api/bot/qrcode",function(data,status){
+            if(data!="login success") 
+            {
+                layer.open({
+                    type: 1,
+                    title: '请扫描二维码登录QQ Bot',
+                    anim: 0, // 0-6 的动画形式，-1 不开启
+                    content: '<img src="'+data+'"/>'
+                });
+            }
+        });
+    }
+</script>
 <div class="layui-card">
     <div class="layui-card-header">QQ Bot Basical Setting</div>
     <div class="layui-card-body">
@@ -5,19 +35,30 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">账号：</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" placeholder="请输入机器人账号" />
+                    <input id="username_input" class="layui-input" placeholder="请输入机器人账号" />
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input class="layui-input" placeholder="请输入机器人密码(非必须，若留空则进行扫码登录)"  type="password"/>
+                    <input id="password_input" class="layui-input" placeholder="请输入机器人密码(非必须，若留空则进行扫码登录)"  type="password"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"></label>
-                <button class="layui-btn">保存</button>
+                <button class="layui-btn" onclick="SaveBotConfig()">保存</button>
             </div>
        </div>
     </div>
-  </div>
+</div>
+<div class="layui-card">
+<div class="layui-card-header">
+    操作区
+</div>
+<div class="layui-card-body">
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <button class="layui-btn layui-bg-blue" onclick="BotLogin()">登录</button>
+    </div>
+</div>
+</div>
