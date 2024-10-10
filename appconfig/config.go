@@ -19,4 +19,12 @@ func ConfigInit() {
 		jsonText, _ := os.ReadFile(filepath.Join(rootPath, "data", "config.json"))
 		json.Unmarshal(jsonText, &AppConfigVar)
 	}
+
+	if !tool.FileIsExsits(filepath.Join(rootPath, "data", "bot.json")) {
+		BotConfigVar.Username = ""
+		BotConfigVar.Password = ""
+	} else {
+		jsonText, _ := os.ReadFile(filepath.Join(rootPath, "data", "bot.json"))
+		json.Unmarshal(jsonText, &BotConfigVar)
+	}
 }

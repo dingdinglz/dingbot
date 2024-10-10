@@ -46,6 +46,20 @@ func ServerInitRun() {
 
 func ServerCommonRun() {
 	appconfig.MainServer.Get("/", route.IndexRoute)
+
+	apiRoute := appconfig.MainServer.Group("/api")
+
+	apiGetRoute := apiRoute.Group("/get")
+	apiGetRoute.Get("/bot", route.GetBotConfigRoute)
+
+	apiSaveRoute := apiRoute.Group("/save")
+	apiSaveRoute.Post("/bot", route.SaveBotConfigRoute)
+
+	apiBotRoute := apiRoute.Group("/bot")
+	apiBotRoute.Get("/login", route.BotLoginRoute)
+	apiBotRoute.Get("/qrcode", route.BotFetchQRcode)
+	apiBotRoute.Get("/islogin", route.BotIsLogin)
+
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {
 		tool.ErrorOut("startServer", "Listen", err)
