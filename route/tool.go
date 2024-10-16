@@ -5,6 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func GenerateRenderMap() fiber.Map {
-	return fiber.Map{"Version": appconfig.Version}
+func GenerateRenderMap(pageName string) fiber.Map {
+	return fiber.Map{"Version": appconfig.Version, "Page": pageName}
 }

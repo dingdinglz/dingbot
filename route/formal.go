@@ -1,9 +1,17 @@
 package route
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/dingdinglz/dingbot/database"
+	"github.com/gofiber/fiber/v2"
+)
 
 func IndexRoute(c *fiber.Ctx) error {
-	pageMap := GenerateRenderMap()
-	pageMap["Page"] = "bot"
+	pageMap := GenerateRenderMap("bot")
 	return c.Render("bot", pageMap, "layout")
+}
+
+func KeyWordRoute(c *fiber.Ctx) error {
+	pageMap := GenerateRenderMap("key")
+	pageMap["Keys"] = database.KeyWordGetAll()
+	return c.Render("key", pageMap, "layout")
 }

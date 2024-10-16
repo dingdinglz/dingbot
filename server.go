@@ -46,6 +46,7 @@ func ServerInitRun() {
 
 func ServerCommonRun() {
 	appconfig.MainServer.Get("/", route.IndexRoute)
+	appconfig.MainServer.Get("/key", route.KeyWordRoute)
 
 	apiRoute := appconfig.MainServer.Group("/api")
 
@@ -59,6 +60,12 @@ func ServerCommonRun() {
 	apiBotRoute.Get("/login", route.BotLoginRoute)
 	apiBotRoute.Get("/qrcode", route.BotFetchQRcode)
 	apiBotRoute.Get("/islogin", route.BotIsLogin)
+
+	apiAddRoute := apiRoute.Group("/add")
+	apiAddRoute.Post("/keyword", route.AddKeywordRoute)
+
+	apiDeleteRoute := apiRoute.Group("/delete")
+	apiDeleteRoute.Post("/keyword", route.DeleteKeywordRoute)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {

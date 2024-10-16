@@ -10,6 +10,9 @@
 </head>
 <body>
 <script src="/layui/layui.js"></script>
+<script>
+  var $ = layui.$;
+</script>
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
     <div class="layui-logo layui-hide-xs layui-bg-black">dingbot</div>
@@ -29,7 +32,13 @@
             <dd id="page-bot"><a href="/">账号设置</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="javascript:;">the links</a></li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">功能</a>
+          <dl class="layui-nav-child">
+            <dd id="page-key"><a href="/key">关键词回复</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="https://dingdinglz.github.io/p/dingbot-v2/">dingbot介绍</a></li>
       </ul>
     </div>
   </div>
@@ -39,7 +48,7 @@
     </div>
   </div>
   <div class="layui-footer">
-        <a href="https://github.com/dingdinglz/dingbot">dingbot</a> {{.Version}} copyright &copy; <a href="https://github.com/dingdinglz">dinglz</a> 2024
+        <a href="https://github.com/dingdinglz/dingbot">dingbot</a> {{.Version}} copyright &copy; <a href="https://dingdinglz.github.io/">dinglz</a> 2024
   </div>
 </div>
 <script>
