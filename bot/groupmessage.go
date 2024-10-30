@@ -10,6 +10,10 @@ import (
 )
 
 func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) {
+	if !database.OpenHave(event.GroupUin, "group") {
+		return
+	}
+
 	messageText := event.ToString()
 	if messageText == "dingbot" {
 		client.SendGroupMessage(event.GroupUin, []message.IMessageElement{message.NewText("dingbot version:" + appconfig.Version + "\nwebsite:https://github.com/dingdinglz/dingbot")})

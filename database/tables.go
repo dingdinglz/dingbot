@@ -9,3 +9,12 @@ type KeyWordTable struct {
 func (KeyWordTable) TableName() string {
 	return "keyword"
 }
+
+type OpenTable struct {
+	Uin      uint32
+	Typename string
+}
+
+func (OpenTable) TableName() string {
+	return "open"
+}

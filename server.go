@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/dingdinglz/dingbot/appconfig"
+	"github.com/dingdinglz/dingbot/database"
 	"github.com/dingdinglz/dingbot/route"
 	"github.com/dingdinglz/dingbot/tool"
 	"github.com/gofiber/fiber/v2"
@@ -19,6 +20,9 @@ func ServerInit() {
 	rootPath, _ := os.Getwd()
 	tEngine := html.New(filepath.Join(rootPath, "web", "index"), ".html")
 	tEngine.ShouldReload = true
+	tEngine.AddFunc("Open", func(Uin uint32, Typename string) bool {
+		return database.OpenHave(Uin, Typename)
+	})
 	appconfig.MainServer = fiber.New(fiber.Config{Views: tEngine})
 	appconfig.MainServer.Use(recover.New(), logger.New())
 	appconfig.MainServer.Static("/", filepath.Join(rootPath, "web", "public"))
@@ -47,6 +51,9 @@ func ServerInitRun() {
 func ServerCommonRun() {
 	appconfig.MainServer.Get("/", route.IndexRoute)
 	appconfig.MainServer.Get("/key", route.KeyWordRoute)
+	appconfig.MainServer.Get("/plugin-edit/:name", route.PluginEditRoute)
+	appconfig.MainServer.Get("/group", route.GroupOpenRoute)
+	appconfig.MainServer.Get("/private", route.PrivateOpenRoute)
 
 	apiRoute := appconfig.MainServer.Group("/api")
 
@@ -63,9 +70,11 @@ func ServerCommonRun() {
 
 	apiAddRoute := apiRoute.Group("/add")
 	apiAddRoute.Post("/keyword", route.AddKeywordRoute)
+	apiAddRoute.Post("/open", route.AddOpenRoute)
 
 	apiDeleteRoute := apiRoute.Group("/delete")
 	apiDeleteRoute.Post("/keyword", route.DeleteKeywordRoute)
+	apiDeleteRoute.Post("/open", route.DeleteOpenRoute)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {
