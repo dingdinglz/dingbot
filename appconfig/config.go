@@ -27,4 +27,7 @@ func ConfigInit() {
 		jsonText, _ := os.ReadFile(filepath.Join(rootPath, "data", "bot.json"))
 		json.Unmarshal(jsonText, &BotConfigVar)
 	}
+	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin"))
+	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin", "source"))
+	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin"))
 }

@@ -1,0 +1,89 @@
+<script>
+    function DeletePluginSource(name)
+    {
+        layui.layer.confirm('是否确定删除该插件源码？', {icon: 3}, function(){
+            $.get("/api/delete/plugin_source?name="+name,function(){
+            location.reload();
+            });
+        }, function(){
+        });    
+    }
+    function NewPluginSource()
+    {
+        layui.layer.prompt({title: '请输入插件名(纯英文可包含数字)'}, function(value, index, elem){
+if(value === '') return elem.focus();
+window.location.href='/plugin-edit/'+value;
+layer.close(index);
+});
+    }
+    function DeletePlugin(name)
+    {
+        layui.layer.confirm('是否删除该插件？',{icon:3},function(){
+            $.get("/api/delete/plugin?name="+name,function(){
+                location.reload();
+            })
+        },function(){});
+    }
+</script>
+<div class="layui-card">
+    <div class="layui-card-header">
+        插件源码列表
+    </div>
+    <div class="layui-card-body">
+        <button class="layui-btn layui-bg-blue" onclick="NewPluginSource()">新建插件</button>
+        <br>
+        <br>
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col width="30%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>插件源码名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .PluginSourceList}}
+                <tr>
+                    <td>{{.}}</td>
+                    <td>
+                        <button class="layui-btn" onclick="window.location.href='/plugin-edit/{{.}}'">编辑</button>
+                        <button class="layui-btn layui-btn-danger" onclick="DeletePluginSource('{{.}}')">删除</button>
+                    </td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="layui-card">
+<div class="layui-card-header">
+    插件列表
+</div>
+<div class="layui-card-body">
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>插件名</th>
+                <th>插件作者</th>
+                <th>插件描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .PluginList}}
+            <tr>
+                <td>{{.Name}}</td>
+                <td>{{.Author}}</td>
+                <td>{{.Description}}</td>
+                <td>
+                    <button class="layui-btn layui-btn-danger" onclick="DeletePlugin('{{.EName}}')">删除</button>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</div>
+</div>

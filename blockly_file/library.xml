@@ -1,0 +1,232 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="mV5ij,%V_P^?9_ey]6ZW" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">groupMessageEvent</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="*vsWbP1n65KJJQzYLdwh">
+        <field name="INPUTNAME">event</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="@3tp4]Xc$ahTSDGBx4V[">
+            <field name="TEXT">群消息事件</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="9tMcC4O0W:q6GzOU9Y7g"></shadow>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="!8`GBXdD/p(jS!Sj4]R~" deletable="false" movable="false">
+        <field name="TEXT">群消息事件</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="XYbF_`,);=I!Ts)F]9NO" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="]gcc+=sZQ6Ry4b6+IbT~">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=";:k|cO^Wu~6a?peXUfw:" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">message</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="wPye8HHk7E8jx(s${Of|">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="oC_W)rM}Mb/jVlVV(;m.">
+            <field name="TEXT">消息</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="KxOu1r[62Cf61+UsNdfM" deletable="false" movable="false">
+        <field name="TEXT">消息</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="i/m9]H;Hw5#;a?tt8Dkb" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="c6D#sItin@tib:c/9.)I"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="%22L3~}{L(h@,RkRsel6">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="_z$LQ6+H)nR.J-fq@CX8" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">SendGroupMessage</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="=1(ikSExNf9zXl1#}XB2">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=";xohx}230,,hn)mjsrDk">
+            <field name="TEXT">发送群消息</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="bsnE+~b_iA$xD{sZ4Xfi">
+            <field name="INPUTNAME">uin</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="eCxhva_ETSz?$1N)2|q{">
+                <field name="TEXT">群号</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="7RrujpTdOr-7f}PSz]4h"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="8~i!gER!71SZ}umbP4-)">
+                <field name="INPUTNAME">message</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="m3Fo7k/e{P`/`7.{C[=N">
+                    <field name="TEXT">消息</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="p~qZyOm|:,oI2=k;M=7("></shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Rz!cU1(;3mfg?egTshsK" deletable="false" movable="false">
+        <field name="TEXT">发送群消息</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ro@9Z0J82|*dhXu7Ba7q" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="K#!_)W{NH;Yw?@i~/U^t"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="z|!$gi:)D1EzlI,^)TV."></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="aE/PEvWW[HFl|B!@@cT`">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="n.vj?nRF][AKf69!+tM(" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">groupUin</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="{K[+l#EM,}mUO8~Ag3D`">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="^0k:#R+(IJuUfSTH5d8J">
+            <field name="TEXT">群号</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="scGyJDeG6G|8D$KI7V6=" deletable="false" movable="false">
+        <field name="TEXT">群号</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="MDBp!6cW)}QXr]SVgn!j" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="*EYAF4oU2UR{WL57-1Ew"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="|iMevnE7vN*#b3A1a=o5">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="}$Y?{Naf{.%;QVI^d9/A" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">pluginInfo</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="x6lK_3kW8#5Q9czoSp30">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",(w?{chXFd036sL`Kkw,">
+            <field name="TEXT">插件名</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="SEP5ViPISr.O:jMQ4+ht"></shadow>
+        </value>
+        <next>
+          <block type="input_value" id="Fb5$=nmqH]l*8r:Ht!bH">
+            <field name="INPUTNAME">author</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="5F:Y8|rx+{Q]/mc,X-y)">
+                <field name="TEXT">插件作者</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="t(!3Z8Y@XpjWOC6=Qppg"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="/F.^.^l]a-*xG,]JP#W6">
+                <field name="INPUTNAME">description</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="M_jupBnbZeLDgUp0A7Aj">
+                    <field name="TEXT">插件介绍</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="9D%Jk^dict3,Xv2qon:g"></shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="_Vcofn!11fL(Bg.C;|.i" deletable="false" movable="false">
+        <field name="TEXT">插件信息提供</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="H%:-d*]kpggPU,PD}Z(K" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="[*.*Qb:Se%t$5O5g%o+h">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block></xml>
