@@ -1,0 +1,42 @@
+<script>
+    function AddOpen(uin)
+    {
+        $.post("/api/add/open",{uin:uin,type:"group"},function(){
+            location.reload();
+        });
+    }
+    function DeleteOpen(uin)
+    {
+        $.post("/api/delete/open",{uin:uin,type:"group"},function(){
+            location.reload();
+        });
+    }
+</script>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>群人数</th>
+            <th>群聊名</th>
+            <th>群号</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .GroupList}}
+        <tr>
+            <td>
+                {{.MemberCount}}
+            </td>
+            <td>{{.Name}}</td>
+            <td>{{.Uin}}</td>
+            {{if Open .Uin "group"}}
+            <td><button class="layui-btn layui-btn-danger" onclick="DeleteOpen('{{.Uin}}')">关闭</button></td>
+            {{else}}
+            <td>
+                <button class="layui-btn layui-btn-success" onclick="AddOpen('{{.Uin}}')">开启</button>
+            </td>
+            {{end}}
+        </tr>
+        {{end}}
+    </tbody>
+</table>

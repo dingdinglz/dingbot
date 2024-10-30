@@ -1,0 +1,42 @@
+<script>
+    function AddOpen(uin)
+    {
+        $.post("/api/add/open",{uin:uin,type:"private"},function(){
+            location.reload();
+        });
+    }
+    function DeleteOpen(uin)
+    {
+        $.post("/api/delete/open",{uin:uin,type:"private"},function(){
+            location.reload();
+        });
+    }
+</script>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>头像</th>
+            <th>昵称</th>
+            <th>QQ号</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .FriendList}}
+        <tr>
+            <td>
+                <img src="{{.Avatar}}" class="layui-nav-img">
+            </td>
+            <td>{{.Name}}</td>
+            <td>{{.Uin}}</td>
+            {{if Open .Uin "private"}}
+            <td><button class="layui-btn layui-btn-danger" onclick="DeleteOpen('{{.Uin}}')">关闭</button></td>
+            {{else}}
+            <td>
+                <button class="layui-btn layui-btn-success" onclick="AddOpen('{{.Uin}}')">开启</button>
+            </td>
+            {{end}}
+        </tr>
+        {{end}}
+    </tbody>
+</table>

@@ -9,6 +9,10 @@ import (
 )
 
 func BotPrivateMessageEvent(client *client.QQClient, event *message.PrivateMessage) {
+	if !database.OpenHave(event.Sender.Uin, "private") {
+		return
+	}
+
 	messageText := event.ToString()
 
 	{
