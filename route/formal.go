@@ -1,8 +1,14 @@
 package route
 
 import (
+	"io/fs"
+	"os"
+	"path/filepath"
+	"strings"
+
 	"github.com/dingdinglz/dingbot/bot"
 	"github.com/dingdinglz/dingbot/database"
+	"github.com/dingdinglz/dingbot/plugin"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -19,6 +25,7 @@ func KeyWordRoute(c *fiber.Ctx) error {
 
 func PluginEditRoute(c *fiber.Ctx) error {
 	pageMap := GenerateRenderMap("plugin-edit")
+	pageMap["PluginName"] = c.Params("name")
 	return c.Render("plugin-edit", pageMap, "layout")
 }
 
@@ -74,4 +81,22 @@ func PrivateOpenRoute(c *fiber.Ctx) error {
 	pageMap := GenerateRenderMap("private")
 	pageMap["FriendList"] = qqfs
 	return c.Render("private", pageMap, "layout")
+}
+
+func PluginRoute(c *fiber.Ctx) error {
+	rootPath, _ := os.Getwd()
+	var PluginSourceList []string
+	filepath.Walk(filepath.Join(rootPath, "data", "plugin", "source"), func(path string, info fs.FileInfo, err error) error {
+		if info.IsDir() {
+			return nil
+		}
+		if filepath.Ext(path) == ".json" {
+			PluginSourceList = append(PluginSourceList, strings.ReplaceAll(filepath.Base(path), filepath.Ext(path), ""))
+		}
+		return nil
+	})
+	pageMap := GenerateRenderMap("plugin")
+	pageMap["PluginSourceList"] = PluginSourceList
+	pageMap["PluginList"] = plugin.GetAllPluginsInfos()
+	return c.Render("plugin", pageMap, "layout")
 }

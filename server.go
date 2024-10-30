@@ -54,14 +54,18 @@ func ServerCommonRun() {
 	appconfig.MainServer.Get("/plugin-edit/:name", route.PluginEditRoute)
 	appconfig.MainServer.Get("/group", route.GroupOpenRoute)
 	appconfig.MainServer.Get("/private", route.PrivateOpenRoute)
+	appconfig.MainServer.Get("/plugin", route.PluginRoute)
 
 	apiRoute := appconfig.MainServer.Group("/api")
 
 	apiGetRoute := apiRoute.Group("/get")
 	apiGetRoute.Get("/bot", route.GetBotConfigRoute)
+	apiGetRoute.Get("/plugin_source", route.GetPluginSourceRoute)
 
 	apiSaveRoute := apiRoute.Group("/save")
 	apiSaveRoute.Post("/bot", route.SaveBotConfigRoute)
+	apiSaveRoute.Post("/plugin_source", route.SavePluginSourceRoute)
+	apiSaveRoute.Post("/plugin", route.SavePluginRoute)
 
 	apiBotRoute := apiRoute.Group("/bot")
 	apiBotRoute.Get("/login", route.BotLoginRoute)
@@ -75,6 +79,8 @@ func ServerCommonRun() {
 	apiDeleteRoute := apiRoute.Group("/delete")
 	apiDeleteRoute.Post("/keyword", route.DeleteKeywordRoute)
 	apiDeleteRoute.Post("/open", route.DeleteOpenRoute)
+	apiDeleteRoute.Get("/plugin_source", route.DeletePluginSourceRoute)
+	apiDeleteRoute.Get("/plugin", route.DeletePluginRoute)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {
