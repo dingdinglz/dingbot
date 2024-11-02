@@ -332,13 +332,16 @@
   <category name="事件" colour="#5b67a5">
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
+    <block type="privatemessageevent"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
     <block type="groupuin"></block>
+    <block type="useruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
     <block type="sendgroupmessage"></block>
+    <block type="sendprivatemessage"></block>
   </category>
 </xml>
 <script>
@@ -373,7 +376,7 @@ Blockly.Blocks['groupmessageevent'] = {
 javascript.javascriptGenerator.forBlock['groupmessageevent'] = function(block, generator) {
   var statements_event = generator.statementToCode(block, 'event');
   // TODO: Assemble javascript into code variable.
-  var code = 'function GroupMessageEvent(GroupUin,Message)\n{\n'+statements_event+"\n}\n";
+  var code = 'function GroupMessageEvent(GroupUin,Message,UserUin)\n{\n'+statements_event+"\n}\n";
   return code;
 };
 
@@ -458,6 +461,63 @@ javascript.javascriptGenerator.forBlock['plugininfo'] = function(block, generato
   var value_description = generator.valueToCode(block, 'description', javascript.Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
   var code = 'function PluginInfoGet(){\nreturn {"name":'+ value_name + ',"author":'+value_author+',"description":'+value_description+'};\n}\n';
+  return code;
+};
+
+Blockly.Blocks['privatemessageevent'] = {
+  init: function() {
+    this.appendStatementInput("event")
+        .setCheck(null)
+        .appendField("私聊消息事件");
+    this.setColour(180);
+ this.setTooltip("私聊消息事件");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['privatemessageevent'] = function(block, generator) {
+  var statements_event = generator.statementToCode(block, 'event');
+  // TODO: Assemble javascript into code variable.
+  var code = 'function PrivateMessageEvent(UserUin,Message)\n{\n' + statements_event + '\n}\n';
+  return code;
+};
+
+Blockly.Blocks['useruin'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("发送人账号");
+    this.setOutput(true, null);
+    this.setColour(180);
+ this.setTooltip("发送人账号");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['useruin'] = function(block, generator) {
+  var code = 'UserUin';
+  return [code, javascript.Order.NONE];
+};
+
+Blockly.Blocks['sendprivatemessage'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("发送私聊消息");
+    this.appendValueInput("user")
+        .setCheck(null)
+        .appendField("用户账号");
+    this.appendValueInput("message")
+        .setCheck(null)
+        .appendField("消息");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(180);
+ this.setTooltip("发送私聊消息");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['sendprivatemessage'] = function(block, generator) {
+  var value_user = generator.valueToCode(block, 'user', javascript.Order.ATOMIC);
+  var value_message = generator.valueToCode(block, 'message', javascript.Order.ATOMIC);
+  // TODO: Assemble javascript into code variable.
+  var code = 'SendPrivateMessage(' + value_user + ',' + value_message + ');\n';
   return code;
 };
 

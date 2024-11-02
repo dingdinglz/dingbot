@@ -229,4 +229,138 @@
         <field name="HUE">230</field>
       </block>
     </value>
+  </block><block type="factory_base" id=";p+;2F+*hXY03Hink*};" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">privateMessageEvent</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="A?sb[#3_9Ju)=qseRo6^">
+        <field name="INPUTNAME">event</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="l`(sJYeH{M{e6H$bT[$k">
+            <field name="TEXT">私聊消息事件</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="t1;K;UyXth1^+[1,q%d;"></shadow>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="d.HXBW.BZJsDxtudAW{W" deletable="false" movable="false">
+        <field name="TEXT">私聊消息事件</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="zQ*16ibYi|n7~qb7M*b(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="UVOCQm@3p{w]G.Vxr|*)">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="BPM0{zr)G/d{B}BvqxP:" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">UserUin</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="i?x!1@hVt8~xso|bUPOw">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="O8)X8R,RP7+hksYN)wx]">
+            <field name="TEXT">发送人账号</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="~Ir;!(XK4c}aF:}Weq^?" deletable="false" movable="false">
+        <field name="TEXT">发送人账号</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(S^11vqj~+uG=9:6YHwI" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="U1;}9^4zu)5Z3@Jdif[B"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="-XPj959QJ2wxWI$2fH`i">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Lh{(CwE.QB7}}e4IRl5|" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">sendPrivateMessage</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="ilOk4rZQw~cjFH9.XL1|">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="J339YVw:zq1.UGtWJ1s4">
+            <field name="TEXT">发送私聊消息</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="?9L4KDdoC/Japs,Fu!aW">
+            <field name="INPUTNAME">user</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="#?$Nr6rYpk[HrcnK5M0l">
+                <field name="TEXT">用户账号</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="^h:y]fsPY6[tRnVMaB8{"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="18c.fxL}LHs{Z;Tx:;r]">
+                <field name="INPUTNAME">message</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="N5A+Mic%%IOQQPS=W-aD">
+                    <field name="TEXT">消息</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id=")Jnxg3bg2WTC8XyFFXl*"></shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(:i@9+v)XsQL$l7Ohypi" deletable="false" movable="false">
+        <field name="TEXT">发送私聊消息</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="I49m_2fi-^MM/:$Wcm26" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="a_[^D~nKd4o)QeMF1]$S"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id=":(A-}1))H[},PvgMR)U4"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="k5I1Jo,/veEL=Gi}xVfI">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
   </block></xml>
