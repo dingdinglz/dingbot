@@ -20,6 +20,10 @@ func AddVMFuncs(Vm *otto.Otto) {
 		DingQQBot.SendGroupMessage(tool.StringToUint32(call.Argument(0).String()), []message.IMessageElement{message.NewText(call.Argument(1).String())})
 		return otto.Value{}
 	})
+	Vm.Set("SendPrivateMessage", func(call otto.FunctionCall) otto.Value {
+		DingQQBot.SendPrivateMessage(tool.StringToUint32(call.Argument(0).String()), []message.IMessageElement{message.NewText(call.Argument(1).String())})
+		return otto.Value{}
+	})
 }
 
 func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) {
@@ -46,7 +50,8 @@ func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) 
 				vm.Run(string(codeText))
 				vm.Set("a", strconv.Itoa(int(event.GroupUin)))
 				vm.Set("b", messageText)
-				vm.Run("GroupMessageEvent(a,b)")
+				vm.Set("c", strconv.Itoa(int(event.Sender.Uin)))
+				vm.Run("GroupMessageEvent(a,b,c)")
 			}
 			return nil
 		})

@@ -29,6 +29,10 @@ func BotFetchQRcode(c *fiber.Ctx) error {
 	}
 	res, _ := os.ReadFile(filepath.Join(rootPath, "data", "qrcode.png"))
 	b := base64.StdEncoding.EncodeToString(res)
+	for b == "" {
+		res, _ = os.ReadFile(filepath.Join(rootPath, "data", "qrcode.png"))
+		b = base64.StdEncoding.EncodeToString(res)
+	}
 	return c.SendString("data:image/png;base64," + b)
 }
 

@@ -319,12 +319,15 @@
   <category name="事件" colour="#5b67a5">
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
+    <block type="privatemessageevent"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
     <block type="groupuin"></block>
+    <block type="useruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
     <block type="sendgroupmessage"></block>
+    <block type="sendprivatemessage"></block>
   </category>
 </xml>
