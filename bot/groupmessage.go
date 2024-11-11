@@ -69,7 +69,14 @@ func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) 
 				if strings.Contains(messageText, i.Key) {
 					client.SendGroupMessage(event.GroupUin, []message.IMessageElement{message.NewGroupReply(event), message.NewText(i.Text)})
 				}
+			}
+		}
+	}
 
+	{
+		groupMembers, _ := DingQQBot.GetGroupMembersData(event.GroupUin)
+		if groupMembers[event.Sender.Uin].Permission == 0 {
+			if groupMembers[client.Uin].Permission != 0 {
 			}
 		}
 	}
