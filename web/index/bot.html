@@ -45,6 +45,12 @@
             }
         });
     }
+    function DeleteSig()
+    {
+        layui.$.get("/api/delete/sig",function(){
+            layui.layer.alert("清除成功！");
+        });
+    }
 </script>
 <div class="layui-card">
     <div class="layui-card-header">QQ Bot Basical Setting</div>
@@ -77,6 +83,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
         <button class="layui-btn layui-bg-blue" onclick="BotLogin()" id="login_btn">登录</button>
+        <button class="layui-btn layui-btn-danger" onclick="DeleteSig()">删除sig（点击登录无反应时点我）</button>
     </div>
 </div>
 </div>

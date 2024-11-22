@@ -1,6 +1,7 @@
 package bot
 
 import (
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -22,6 +23,10 @@ func AddVMFuncs(Vm *otto.Otto) {
 	})
 	Vm.Set("SendPrivateMessage", func(call otto.FunctionCall) otto.Value {
 		DingQQBot.SendPrivateMessage(tool.StringToUint32(call.Argument(0).String()), []message.IMessageElement{message.NewText(call.Argument(1).String())})
+		return otto.Value{}
+	})
+	Vm.Set("DingbotPrint", func(call otto.FunctionCall) otto.Value {
+		fmt.Println("[plugin] " + call.Argument(0).String())
 		return otto.Value{}
 	})
 }
@@ -76,7 +81,34 @@ func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) 
 	{
 		groupMembers, _ := DingQQBot.GetGroupMembersData(event.GroupUin)
 		if groupMembers[event.Sender.Uin].Permission == 0 {
+			// 发言者是普通成员
 			if groupMembers[client.Uin].Permission != 0 {
+				// 机器人是管理
+			}
+		} else {
+			// 发言者是管理
+			var ReplyFlag = false
+			var ReplySeq uint32
+			var ReplySender uint32
+			for _, i := range event.GetElements() {
+				if i.Type() == message.Reply {
+					ReplyFlag = true
+					ReplySeq = i.(*message.ReplyElement).ReplySeq
+					ReplySender = i.(*message.ReplyElement).SenderUin
+				}
+				if i.Type() == message.Text {
+					if strings.ReplaceAll(i.(*message.TextElement).Content, " ", "") == "撤回" {
+						if ReplyFlag {
+							if ReplySender == client.Uin {
+								client.RecallGroupMessage(event.GroupUin, ReplySeq)
+							} else {
+								if groupMembers[client.Uin].Permission > 0 && groupMembers[ReplySender].Permission == 0 {
+									client.RecallGroupMessage(event.GroupUin, ReplySeq)
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
