@@ -36,3 +36,12 @@ func DeletePluginRoute(c *fiber.Ctx) error {
 	os.Remove(filepath.Join(rootPath, "data", "plugin", c.Query("name")+".js"))
 	return JsonMessage(c, 0, "ok")
 }
+
+func DeleteSigRoute(c *fiber.Ctx) error {
+	rootPath, _ := os.Getwd()
+	os.Remove(filepath.Join(rootPath, "data", "sig.bin"))
+	if tool.FileIsExsits(filepath.Join(rootPath, "data", "qrcode.png")) {
+		os.Remove(filepath.Join(rootPath, "data", "qrcode.png"))
+	}
+	return JsonMessage(c, 0, "ok")
+}

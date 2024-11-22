@@ -227,22 +227,6 @@
         </shadow>
       </value>
     </block>
-    <block type="text_print">
-      <value name="TEXT">
-        <shadow type="text">
-          <field name="TEXT">abc</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="text_prompt_ext">
-      <mutation type="TEXT"></mutation>
-      <field name="TYPE">TEXT</field>
-      <value name="TEXT">
-        <shadow type="text">
-          <field name="TEXT">abc</field>
-        </shadow>
-      </value>
-    </block>
   </category>
   <category name="列表" colour="#745ba5">
     <block type="lists_create_with">
@@ -327,6 +311,7 @@
     <block type="useruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
+    <block type="dingbotprint"></block>
     <block type="sendgroupmessage"></block>
     <block type="sendprivatemessage"></block>
   </category>

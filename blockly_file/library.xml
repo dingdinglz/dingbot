@@ -363,4 +363,45 @@
         <field name="HUE">180</field>
       </block>
     </value>
+  </block><block type="factory_base" id="RZFR267,_6y6|}9#t;tk" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">dingbotPrint</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="0MXXU/,T1$vupJ9Yg:^Q">
+        <field name="INPUTNAME">text</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="QE]h@Z!*mtdE,]g7YB_v">
+            <field name="TEXT">Dingbot输出</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="F8nD64],zo.7{m{HO^g0"></shadow>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id=",gq?jYox}Mm0jLLPzj$C" deletable="false" movable="false">
+        <field name="TEXT">控制台输出</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="s:k~d_0FeJtW@jaEfk(I" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="]L,GtUv`EnI8q94hC-2="></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Opcd)qtics2t@cUm,qC}"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="4:H]bF#3(J3Fv)axT6Q$">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
   </block></xml>

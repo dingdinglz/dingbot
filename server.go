@@ -81,6 +81,7 @@ func ServerCommonRun() {
 	apiDeleteRoute.Post("/open", route.DeleteOpenRoute)
 	apiDeleteRoute.Get("/plugin_source", route.DeletePluginSourceRoute)
 	apiDeleteRoute.Get("/plugin", route.DeletePluginRoute)
+	apiDeleteRoute.Get("/sig", route.DeleteSigRoute)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {

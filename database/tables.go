@@ -18,3 +18,11 @@ type OpenTable struct {
 func (OpenTable) TableName() string {
 	return "open"
 }
+
+type StopTable struct {
+	Text string
+}
+
+func (StopTable) TableName() string {
+	return "stop"
+}

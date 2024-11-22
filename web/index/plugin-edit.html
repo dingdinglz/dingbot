@@ -240,22 +240,6 @@
         </shadow>
       </value>
     </block>
-    <block type="text_print">
-      <value name="TEXT">
-        <shadow type="text">
-          <field name="TEXT">abc</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="text_prompt_ext">
-      <mutation type="TEXT"></mutation>
-      <field name="TYPE">TEXT</field>
-      <value name="TEXT">
-        <shadow type="text">
-          <field name="TEXT">abc</field>
-        </shadow>
-      </value>
-    </block>
   </category>
   <category name="列表" colour="#745ba5">
     <block type="lists_create_with">
@@ -340,6 +324,7 @@
     <block type="useruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
+    <block type="dingbotprint"></block>
     <block type="sendgroupmessage"></block>
     <block type="sendprivatemessage"></block>
   </category>
@@ -518,6 +503,24 @@ javascript.javascriptGenerator.forBlock['sendprivatemessage'] = function(block, 
   var value_message = generator.valueToCode(block, 'message', javascript.Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
   var code = 'SendPrivateMessage(' + value_user + ',' + value_message + ');\n';
+  return code;
+};
+
+Blockly.Blocks['dingbotprint'] = {
+  init: function() {
+    this.appendValueInput("text")
+        .setCheck(null)
+        .appendField("Dingbot输出");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("控制台输出");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['dingbotprint'] = function(block, generator) {
+  var value_text = generator.valueToCode(block, 'text', javascript.Order.ATOMIC);
+  var code = '\nDingbotPrint('+ value_text +');\n';
   return code;
 };
 
