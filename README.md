@@ -124,3 +124,5 @@ go build
 #### 插件的获取
 
 当然，除了自己编写插件以外，可以从社区下载他人制作完成的插件，复制到对应的文件夹中，若你可以在插件列表中看到该插件，即为添加成功。
+
+[![Star History Chart](https://api.star-history.com/svg?repos=dingdinglz/dingbot&type=Date)](https://star-history.com/#dingdinglz/dingbot&Date)
