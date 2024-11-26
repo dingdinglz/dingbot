@@ -304,11 +304,13 @@
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
     <block type="privatemessageevent"></block>
+    <block type="grouprecallevent" deletable="false" movable="false" editable="false"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
     <block type="groupuin"></block>
     <block type="useruin"></block>
+    <block type="operatoruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
     <block type="dingbotprint"></block>

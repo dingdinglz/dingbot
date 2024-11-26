@@ -317,11 +317,13 @@
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
     <block type="privatemessageevent"></block>
+    <block type="grouprecallevent" deletable="false" movable="false" editable="false"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
     <block type="groupuin"></block>
     <block type="useruin"></block>
+    <block type="operatoruin"></block>
   </category>
   <category name="功能函数" colour="#9fa55b">
     <block type="dingbotprint"></block>
@@ -522,6 +524,37 @@ javascript.javascriptGenerator.forBlock['dingbotprint'] = function(block, genera
   var value_text = generator.valueToCode(block, 'text', javascript.Order.ATOMIC);
   var code = '\nDingbotPrint('+ value_text +');\n';
   return code;
+};
+
+Blockly.Blocks['grouprecallevent'] = {
+  init: function() {
+    this.appendStatementInput("event")
+        .setCheck(null)
+        .appendField("群消息撤回事件");
+    this.setColour(180);
+ this.setTooltip("群消息撤回事件");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['grouprecallevent'] = function(block, generator) {
+  var statements_event = generator.statementToCode(block, 'event');
+  var code = '\nfunction GroupRecallEvent(Message,GroupUin,UserUin,OperatorUin)\n{\n' + statements_event + '\n}\n';
+  return code;
+};
+
+Blockly.Blocks['operatoruin'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("操作人账号");
+    this.setOutput(true, null);
+    this.setColour(180);
+ this.setTooltip("操作人账号");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['operatoruin'] = function(block, generator) {
+  var code = 'OperatorUin';
+  return [code, javascript.Order.NONE];
 };
 
 function LoadPage(data)
