@@ -1,9 +1,6 @@
 package bot
 
 import (
-	"io/fs"
-	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -22,21 +19,10 @@ func BotPrivateMessageEvent(client *client.QQClient, event *message.PrivateMessa
 
 	// 插件
 	{
-		rootPath, _ := os.Getwd()
-		filepath.Walk(filepath.Join(rootPath, "data", "plugin"), func(path string, info fs.FileInfo, err error) error {
-			if info.IsDir() {
-				return nil
-			}
-			if filepath.Ext(path) == ".js" {
-				vm := otto.New()
-				AddVMFuncs(vm)
-				codeText, _ := os.ReadFile(path)
-				vm.Run(string(codeText))
-				vm.Set("a", strconv.Itoa(int(event.Sender.Uin)))
-				vm.Set("b", messageText)
-				vm.Run("PrivateMessageEvent(a,b)")
-			}
-			return nil
+		RunPlugin(func(vm *otto.Otto) {
+			vm.Set("a", strconv.Itoa(int(event.Sender.Uin)))
+			vm.Set("b", messageText)
+			vm.Run("PrivateMessageEvent(a,b)")
 		})
 	}
 
@@ -52,7 +38,6 @@ func BotPrivateMessageEvent(client *client.QQClient, event *message.PrivateMessa
 				if strings.Contains(messageText, i.Key) {
 					client.SendPrivateMessage(event.Sender.Uin, []message.IMessageElement{message.NewText(i.Text)})
 				}
-
 			}
 		}
 	}
