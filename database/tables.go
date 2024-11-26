@@ -26,3 +26,13 @@ type StopTable struct {
 func (StopTable) TableName() string {
 	return "stop"
 }
+
+type MessageTable struct {
+	Typename string
+	Message  string
+	Seq      uint32
+}
+
+func (MessageTable) TableName() string {
+	return "message"
+}

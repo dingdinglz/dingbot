@@ -33,6 +33,7 @@ func PrepareBot() {
 	}
 	DingQQBot.GroupMessageEvent.Subscribe(BotGroupMessageEvent)
 	DingQQBot.PrivateMessageEvent.Subscribe(BotPrivateMessageEvent)
+	DingQQBot.GroupRecallEvent.Subscribe(GroupRecallEvent)
 	err := DingQQBot.Login("", filepath.Join(rootPath, "data", "qrcode.png"))
 	if err != nil {
 		fmt.Println(err.Error())

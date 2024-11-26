@@ -2,9 +2,6 @@ package bot
 
 import (
 	"fmt"
-	"io/fs"
-	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -40,25 +37,16 @@ func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) 
 	if messageText == "dingbot" {
 		client.SendGroupMessage(event.GroupUin, []message.IMessageElement{message.NewText("dingbot version:" + appconfig.Version + "\nwebsite:https://github.com/dingdinglz/dingbot")})
 	}
+	// 存表，以备查询
+	database.MessageInsert("group", messageText, event.OriginalObject.ContentHead.Sequence.Unwrap())
 
 	// 插件
 	{
-		rootPath, _ := os.Getwd()
-		filepath.Walk(filepath.Join(rootPath, "data", "plugin"), func(path string, info fs.FileInfo, err error) error {
-			if info.IsDir() {
-				return nil
-			}
-			if filepath.Ext(path) == ".js" {
-				vm := otto.New()
-				AddVMFuncs(vm)
-				codeText, _ := os.ReadFile(path)
-				vm.Run(string(codeText))
-				vm.Set("a", strconv.Itoa(int(event.GroupUin)))
-				vm.Set("b", messageText)
-				vm.Set("c", strconv.Itoa(int(event.Sender.Uin)))
-				vm.Run("GroupMessageEvent(a,b,c)")
-			}
-			return nil
+		RunPlugin(func(vm *otto.Otto) {
+			vm.Set("a", strconv.Itoa(int(event.GroupUin)))
+			vm.Set("b", messageText)
+			vm.Set("c", strconv.Itoa(int(event.Sender.Uin)))
+			vm.Run("GroupMessageEvent(a,b,c)")
 		})
 	}
 

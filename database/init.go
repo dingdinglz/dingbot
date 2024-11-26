@@ -16,5 +16,6 @@ func DatabaseInit() {
 	if err != nil {
 		tool.ErrorOut("database", "open error", err)
 	}
-	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{})
+	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{}, &MessageTable{})
+	DB.Delete(&MessageTable{}, "1=1")
 }

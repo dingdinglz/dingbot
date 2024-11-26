@@ -404,4 +404,73 @@
         <field name="HUE">230</field>
       </block>
     </value>
+  </block><block type="factory_base" id="P)-WB:WOj0QJ/#C?:%j6" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">groupRecallEvent</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="P:7V~##kKR`V53bpcyI|">
+        <field name="INPUTNAME">event</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="V1_dpw5;KuZuHh|wu08H">
+            <field name="TEXT">群消息撤回事件</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="@y.ZD`AF7,vz3}xDs)ju"></shadow>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="fkZv4qPy%$SX|-j@TK:~" deletable="false" movable="false">
+        <field name="TEXT">群消息撤回事件</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="3I1542g,#h8H[O:QwZtm" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="ceAoj0l^VSZp(x!U+$qE">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="}5LD;9,v?-*FT,4_)h.M" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">OperatorUin</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="dsp_$5QVd7W6C*ll+#ZN">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="m@~(P8ZwB%kr[5Pko6ms">
+            <field name="TEXT">操作人账号</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="pQ|RKY!!blt_M%~hJCKa" deletable="false" movable="false">
+        <field name="TEXT">操作人账号</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="?,eFP|wm=:daF](Ld4,=" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="fD:B@qrO5AqynCyru28n"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="Zt2C,A?nnCfZ8Hc734}e">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
   </block></xml>
