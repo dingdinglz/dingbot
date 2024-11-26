@@ -36,3 +36,13 @@ type MessageTable struct {
 func (MessageTable) TableName() string {
 	return "message"
 }
+
+type PluginData struct {
+	Plugin string
+	Name   string
+	Value  string
+}
+
+func (PluginData) TableName() string {
+	return "plugin"
+}
