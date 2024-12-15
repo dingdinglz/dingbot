@@ -55,6 +55,7 @@ func ServerCommonRun() {
 	appconfig.MainServer.Get("/group", route.GroupOpenRoute)
 	appconfig.MainServer.Get("/private", route.PrivateOpenRoute)
 	appconfig.MainServer.Get("/plugin", route.PluginRoute)
+	appconfig.MainServer.Post("/github/webhook", route.GithubWebhookRoute)
 
 	apiRoute := appconfig.MainServer.Group("/api")
 
