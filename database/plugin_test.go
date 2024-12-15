@@ -9,7 +9,7 @@ import (
 
 func DatabaseInitTest() {
 	DB, _ = gorm.Open(sqlite.Open("../data/data.db"))
-	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{}, &MessageTable{}, &PluginData{})
+	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{}, &MessageTable{}, &PluginData{}, &StarTable{}, &GithubHookTable{})
 	DB.Delete(&MessageTable{}, "1=1")
 }
 

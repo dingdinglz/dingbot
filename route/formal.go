@@ -100,3 +100,14 @@ func PluginRoute(c *fiber.Ctx) error {
 	pageMap["PluginList"] = plugin.GetAllPluginsInfos()
 	return c.Render("plugin", pageMap, "layout")
 }
+
+func GithubRoute(ctx *fiber.Ctx) error {
+	if bot.DingQQBot == nil {
+		return ctx.Redirect("/")
+	}
+	if !bot.DingQQBot.Online.Load() {
+		return ctx.Redirect("/")
+	}
+	pageMap := GenerateRenderMap("webhook-github")
+	return ctx.Render("github", pageMap, "layout")
+}

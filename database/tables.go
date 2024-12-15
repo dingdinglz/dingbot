@@ -46,3 +46,22 @@ type PluginData struct {
 func (PluginData) TableName() string {
 	return "plugin"
 }
+
+type StarTable struct {
+	Repository string
+	Sender     string
+}
+
+func (StarTable) TableName() string {
+	return "star"
+}
+
+type GithubHookTable struct {
+	ID    uint
+	Name  string
+	Group string
+}
+
+func (GithubHookTable) TableName() string {
+	return "github"
+}
