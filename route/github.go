@@ -7,6 +7,6 @@ import (
 )
 
 func GithubWebhookRoute(ctx *fiber.Ctx) error {
-	fmt.Println(ctx.Body())
+	fmt.Println(string(ctx.Body()))
 	return JsonMessage(ctx, 0, "ok")
 }
