@@ -102,12 +102,7 @@ func PluginRoute(c *fiber.Ctx) error {
 }
 
 func GithubRoute(ctx *fiber.Ctx) error {
-	if bot.DingQQBot == nil {
-		return ctx.Redirect("/")
-	}
-	if !bot.DingQQBot.Online.Load() {
-		return ctx.Redirect("/")
-	}
 	pageMap := GenerateRenderMap("webhook-github")
+	pageMap["Githubs"] = database.GithubWebhookGetAll()
 	return ctx.Render("github", pageMap, "layout")
 }

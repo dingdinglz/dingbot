@@ -1,0 +1,77 @@
+<script>
+    function AddGithubProject() {
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+            layer.open({
+                type: 1,
+                shade: 0,
+                title: '输入信息',
+                content: $('#addGithubDialog'),
+                area: ['350px', '250px'],
+                btn: ['确定', '取消'],
+                yes: function (index, layero) {
+                    var name = layero.find('input[name=name]').val();
+                    var group = layero.find('input[name=group]').val();
+                    if (!name) {
+                        layer.msg('请输入仓库名');
+                        return;
+                    }
+                    if (!group) {
+                        layer.msg('请输入群号');
+                        return;
+                    }
+                    $.post("/api/add/github",{name:name,group:group},function(){
+                        window.location.reload();
+                    })
+                    layer.close(index);
+                }
+            });
+
+        });
+    }
+    function DeleteGithubProject(name) {
+        $.post("/api/delete/github",{name:name},function(){
+            window.location.reload();
+        })
+    }
+</script>
+<button class="layui-btn layui-btn-primary" onclick="AddGithubProject()">添加推送</button>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>项目</th>
+            <th>推送到群号</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .Githubs}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Group}}</td>
+            <td>
+                <button class="layui-btn layui-btn-danger" onclick="DeleteGithubProject('{{.Name}}')">删除</button>
+            </td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+<div id="addGithubDialog" style="display: none; padding: 20px;">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">仓库名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" required lay-verify="required" placeholder="例如：dingdinglz/dingbot"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">推送到群号</label>
+            <div class="layui-input-block">
+                <input type="text" name="group" required lay-verify="required" placeholder="多个群号请用空格隔开"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </form>
+</div>

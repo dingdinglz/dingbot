@@ -77,6 +77,7 @@ func ServerCommonRun() {
 	apiAddRoute := apiRoute.Group("/add")
 	apiAddRoute.Post("/keyword", route.AddKeywordRoute)
 	apiAddRoute.Post("/open", route.AddOpenRoute)
+	apiAddRoute.Post("/github", route.AddGithubRoute)
 
 	apiDeleteRoute := apiRoute.Group("/delete")
 	apiDeleteRoute.Post("/keyword", route.DeleteKeywordRoute)
@@ -84,6 +85,7 @@ func ServerCommonRun() {
 	apiDeleteRoute.Get("/plugin_source", route.DeletePluginSourceRoute)
 	apiDeleteRoute.Get("/plugin", route.DeletePluginRoute)
 	apiDeleteRoute.Get("/sig", route.DeleteSigRoute)
+	apiDeleteRoute.Post("/github", route.DeleteGithubRoute)
 
 	err := appconfig.MainServer.Listen("0.0.0.0:" + strconv.Itoa(appconfig.AppConfigVar.Port))
 	if err != nil {

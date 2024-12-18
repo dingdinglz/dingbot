@@ -21,3 +21,13 @@ func GithubWebhookGet(name string) string {
 	DB.Model(&GithubHookTable{}).Where("name = ?", name).First(&i)
 	return i.Group
 }
+
+func GithubWebhookGetAll() []GithubHookTable {
+	var i []GithubHookTable
+	DB.Model(&GithubHookTable{}).Find(&i)
+	return i
+}
+
+func GithubWebhookDelete(name string) {
+	DB.Delete(&GithubHookTable{}, "name = ?", name)
+}
