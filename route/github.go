@@ -2,6 +2,7 @@ package route
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/LagrangeDev/LagrangeGo/message"
@@ -12,13 +13,14 @@ import (
 )
 
 func GithubWebhookRoute(ctx *fiber.Ctx) error {
+	eventName := ctx.Get("X-GitHub-Event")
+	fmt.Println(eventName)
 	if bot.DingQQBot == nil {
 		return JsonMessage(ctx, 0, "ok")
 	}
 	if !bot.DingQQBot.Online.Load() {
 		return JsonMessage(ctx, 0, "ok")
 	}
-	eventName := ctx.Get("X-GitHub-Event")
 	var webhookInfos map[string]interface{}
 	json.Unmarshal(ctx.Body(), &webhookInfos)
 	repositoryName := webhookInfos["repository"].(map[string]interface{})["full_name"].(string)
@@ -27,6 +29,7 @@ func GithubWebhookRoute(ctx *fiber.Ctx) error {
 	}
 	sendGroupsString := database.GithubWebhookGet(repositoryName)
 	sendGroups := strings.Split(sendGroupsString, ",")
+	fmt.Println(webhookInfos["action"].(string))
 	switch eventName {
 	case "push":
 		bot.DingQQBot.SendGroupMessage(11, []message.IMessageElement{message.NewText("11")})
