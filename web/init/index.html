@@ -1,45 +1,60 @@
 <head>
-    <title>dingbot初始化</title>
-    <link href="/layui/css/layui.css" rel="stylesheet">
+  <title>dingbot初始化</title>
+  <link href="/layui/css/layui.css" rel="stylesheet">
 </head>
+
 <body>
-    <script src="/layui/layui.js"></script>
-    <div style="margin: 15px;">
-        <form class="layui-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">启动端口</label>
-                <div class="layui-input-block">
-                  <input type="number" name="port" placeholder="请输入启动端口(pure number)" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label"></label>
-                <button class="layui-btn" lay-submit lay-filter="init-submit">初始化</button>
-            </div>
-        </form>
-    </div>
+  <script src="/layui/layui.js"></script>
+  <div style="margin: 15px;">
+    <form class="layui-form">
+      <div class="layui-form-item">
+        <label class="layui-form-label">启动端口</label>
+        <div class="layui-input-block">
+          <input type="number" name="port" placeholder="请输入启动端口(pure number)" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">数据库类型</label>
+        <div class="layui-input-block">
+          <select name="database">
+            <option value=""></option>
+            <option value="mysql">Mysql</option>
+            <option value="sqlite">Sqlite3</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">数据库源</label>
+        <div class="layui-input-block">
+          <input name="source" placeholder="例如data.db" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <button class="layui-btn" lay-submit lay-filter="init-submit">初始化</button>
+      </div>
+    </form>
+  </div>
 </body>
 <script>
-    layui.use(function(){
-var form = layui.form;
-var layer = layui.layer;
-form.on('submit(init-submit)', function(data){
-  var field = data.field; // 获取表单全部字段值
-  layui.$.post("/api/init",field,function(data){
-    if(data.code === 0)
-  {
-    layer.alert("请重启程序以正式启动dingbot", {
-    title: '初始化成功！'
+  layui.use(function () {
+    var form = layui.form;
+    var layer = layui.layer;
+    form.on('submit(init-submit)', function (data) {
+      var field = data.field; // 获取表单全部字段值
+      layui.$.post("/api/init", field, function (data) {
+        if (data.code === 0) {
+          layer.alert("请重启程序以正式启动dingbot", {
+            title: '初始化成功！'
+          });
+        }
+        else {
+          layer.alert(data.message, {
+            title: '初始化失败！'
+          });
+        }
+      });
+      return false;
+    });
   });
-  }
-  else
-  {
-    layer.alert(data.message, {
-    title: '初始化失败！'
-  });
-}
-  });
-  return false;
-});
-});
 </script>

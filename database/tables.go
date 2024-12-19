@@ -36,3 +36,32 @@ type MessageTable struct {
 func (MessageTable) TableName() string {
 	return "message"
 }
+
+type PluginData struct {
+	Plugin string
+	Name   string
+	Value  string
+}
+
+func (PluginData) TableName() string {
+	return "plugin"
+}
+
+type StarTable struct {
+	Repository string
+	Sender     string
+}
+
+func (StarTable) TableName() string {
+	return "star"
+}
+
+type GithubHookTable struct {
+	ID    uint
+	Name  string
+	Group string
+}
+
+func (GithubHookTable) TableName() string {
+	return "github"
+}

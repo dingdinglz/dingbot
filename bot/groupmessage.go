@@ -1,7 +1,6 @@
 package bot
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -9,24 +8,8 @@ import (
 	"github.com/LagrangeDev/LagrangeGo/message"
 	"github.com/dingdinglz/dingbot/appconfig"
 	"github.com/dingdinglz/dingbot/database"
-	"github.com/dingdinglz/dingbot/tool"
 	"github.com/robertkrimen/otto"
 )
-
-func AddVMFuncs(Vm *otto.Otto) {
-	Vm.Set("SendGroupMessage", func(call otto.FunctionCall) otto.Value {
-		DingQQBot.SendGroupMessage(tool.StringToUint32(call.Argument(0).String()), []message.IMessageElement{message.NewText(call.Argument(1).String())})
-		return otto.Value{}
-	})
-	Vm.Set("SendPrivateMessage", func(call otto.FunctionCall) otto.Value {
-		DingQQBot.SendPrivateMessage(tool.StringToUint32(call.Argument(0).String()), []message.IMessageElement{message.NewText(call.Argument(1).String())})
-		return otto.Value{}
-	})
-	Vm.Set("DingbotPrint", func(call otto.FunctionCall) otto.Value {
-		fmt.Println("[plugin] " + call.Argument(0).String())
-		return otto.Value{}
-	})
-}
 
 func BotGroupMessageEvent(client *client.QQClient, event *message.GroupMessage) {
 	if !database.OpenHave(event.GroupUin, "group") {

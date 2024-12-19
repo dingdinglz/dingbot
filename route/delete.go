@@ -45,3 +45,11 @@ func DeleteSigRoute(c *fiber.Ctx) error {
 	}
 	return JsonMessage(c, 0, "ok")
 }
+
+func DeleteGithubRoute(c *fiber.Ctx) error {
+	if c.FormValue("name", "") == "" {
+		return JsonMessage(c, -1, "none")
+	}
+	database.GithubWebhookDelete(c.FormValue("name"))
+	return JsonMessage(c, 0, "ok")
+}

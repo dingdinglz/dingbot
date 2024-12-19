@@ -473,4 +473,145 @@
         <field name="HUE">180</field>
       </block>
     </value>
+  </block><block type="factory_base" id="w[lxcc0D3v~gGP|d@`9%" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">DataSet</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="AB.4J4`[Jlw?B(`EocQA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="c-1F2{XH_gU8!51{T@[O">
+            <field name="TEXT">设置值</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="TG;!j(r)k,FbM|y^]S22">
+            <field name="INPUTNAME">pluginName</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="bvy8|lwQBhwos$Aum8tu">
+                <field name="TEXT">插件名</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="aMG%l`}k_ybh6tsTX6}/"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="XM:wWf`{^+=y#M@_(n.7">
+                <field name="INPUTNAME">name</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="~g6!goV7_,IsI0Z}IEi5">
+                    <field name="TEXT">名</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="@(!.S4IW_T:JvE`j1;ba"></shadow>
+                </value>
+                <next>
+                  <block type="input_value" id="FhzP9oSyxI1X47{3#=l/">
+                    <field name="INPUTNAME">value</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="=fm8:{+h%Yn:+B`V3mjn">
+                        <field name="TEXT">值</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="Kw$v0^wzki5I3MjxhQtd"></shadow>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="AAN#C:HulroBL^sPUU,O" deletable="false" movable="false">
+        <field name="TEXT">持久化存储，设置值，数据存储在本地数据库内</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=";6yAs{sHl22T!Y/-(Liq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="0[$+0um@@#)?akzgA$94"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="q|bmp[9c=a6cJ^6lo47a"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=":pD1WL$Sr73z3[v7H*vK">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="rHlr(SM_Jr9jIvN+xlkN" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">DataGet</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="IS.a0rVZ^J@xIV6pE,|7">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="Q13wejVii~{Z;w;.etPs">
+            <field name="TEXT">取值</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="6QO[FdKy]]seb{`OU65K">
+            <field name="INPUTNAME">pluginName</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="w4Tg$agA3H*UXGVb+n}V">
+                <field name="TEXT">插件名</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="ODa,t{J3Qn$]CY9%s*3q"></shadow>
+            </value>
+            <next>
+              <block type="input_value" id="{qMdpJ/*62mCSfF`9GPD">
+                <field name="INPUTNAME">name</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="oOLZ^fOGu{15yw|Cnx%M">
+                    <field name="TEXT">名</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="a.*6rS5aA+DZl;fO*E[@"></shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="wmMzU5{s-dxhu|R`?dpk" deletable="false" movable="false">
+        <field name="TEXT">持久化存储，取值，和设置值配对使用</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="@66#TKHQD#fF^:fuD6hh" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="dcJH[9tYcA+dL)KY8)9("></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="=Puq8A^,BxL7@%a)H/y{">
+        <mutation colour="#80a55b"></mutation>
+        <field name="HUE">90</field>
+      </block>
+    </value>
   </block></xml>

@@ -25,3 +25,11 @@ func AddOpenRoute(c *fiber.Ctx) error {
 	database.OpenAdd(tool.StringToUint32(c.FormValue("uin", "")), c.FormValue("type", ""))
 	return JsonMessage(c, 0, "ok")
 }
+
+func AddGithubRoute(c *fiber.Ctx) error {
+	if c.FormValue("name", "") == "" || c.FormValue("group", "") == "" {
+		return JsonMessage(c, -1, "none")
+	}
+	database.GithubWebhookCreate(c.FormValue("name"), c.FormValue("group"))
+	return JsonMessage(c, 0, "ok")
+}

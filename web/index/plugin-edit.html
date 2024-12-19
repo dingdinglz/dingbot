@@ -317,7 +317,7 @@
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
     <block type="privatemessageevent"></block>
-    <block type="grouprecallevent" deletable="false" movable="false" editable="false"></block>
+    <block type="grouprecallevent"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
@@ -329,6 +329,10 @@
     <block type="dingbotprint"></block>
     <block type="sendgroupmessage"></block>
     <block type="sendprivatemessage"></block>
+  </category>
+  <category name="键值对存储" colour="#5ba58c">
+    <block type="dataset"></block>
+    <block type="dataget"></block>
   </category>
 </xml>
 <script>
@@ -554,6 +558,57 @@ Blockly.Blocks['operatoruin'] = {
 };
 javascript.javascriptGenerator.forBlock['operatoruin'] = function(block, generator) {
   var code = 'OperatorUin';
+  return [code, javascript.Order.NONE];
+};
+
+Blockly.Blocks['dataset'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("设置值");
+    this.appendValueInput("pluginName")
+        .setCheck(null)
+        .appendField("插件名");
+    this.appendValueInput("name")
+        .setCheck(null)
+        .appendField("名");
+    this.appendValueInput("value")
+        .setCheck(null)
+        .appendField("值");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(90);
+ this.setTooltip("持久化存储，设置值，数据存储在本地数据库内");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['dataset'] = function(block, generator) {
+  var value_pluginname = generator.valueToCode(block, 'pluginName', javascript.Order.ATOMIC);
+  var value_name = generator.valueToCode(block, 'name', javascript.Order.ATOMIC);
+  var value_value = generator.valueToCode(block, 'value', javascript.Order.ATOMIC);
+  var code = '\nDataSet('+value_pluginname+','+value_name+','+value_value+');\n';
+  return code;
+};
+
+Blockly.Blocks['dataget'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("取值");
+    this.appendValueInput("pluginName")
+        .setCheck(null)
+        .appendField("插件名");
+    this.appendValueInput("name")
+        .setCheck(null)
+        .appendField("名");
+    this.setOutput(true, null);
+    this.setColour(90);
+ this.setTooltip("持久化存储，取值，和设置值配对使用");
+ this.setHelpUrl("");
+  }
+};
+javascript.javascriptGenerator.forBlock['dataget'] = function(block, generator) {
+  var value_pluginname = generator.valueToCode(block, 'pluginName', javascript.Order.ATOMIC);
+  var value_name = generator.valueToCode(block, 'name', javascript.Order.ATOMIC);
+  var code = 'DataGet('+value_pluginname+','+value_name+")";
   return [code, javascript.Order.NONE];
 };
 

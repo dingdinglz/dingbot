@@ -304,7 +304,7 @@
     <block type="plugininfo"></block>
     <block type="groupmessageevent"></block>
     <block type="privatemessageevent"></block>
-    <block type="grouprecallevent" deletable="false" movable="false" editable="false"></block>
+    <block type="grouprecallevent"></block>
   </category>
   <category name="参数" colour="#5b80a5">
     <block type="message"></block>
@@ -316,5 +316,9 @@
     <block type="dingbotprint"></block>
     <block type="sendgroupmessage"></block>
     <block type="sendprivatemessage"></block>
+  </category>
+  <category name="键值对存储" colour="#5ba58c">
+    <block type="dataset"></block>
+    <block type="dataget"></block>
   </category>
 </xml>

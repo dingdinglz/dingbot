@@ -100,3 +100,9 @@ func PluginRoute(c *fiber.Ctx) error {
 	pageMap["PluginList"] = plugin.GetAllPluginsInfos()
 	return c.Render("plugin", pageMap, "layout")
 }
+
+func GithubRoute(ctx *fiber.Ctx) error {
+	pageMap := GenerateRenderMap("webhook-github")
+	pageMap["Githubs"] = database.GithubWebhookGetAll()
+	return ctx.Render("github", pageMap, "layout")
+}
