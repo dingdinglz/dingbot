@@ -13,7 +13,9 @@ var (
 )
 
 type AppConfig struct {
-	Port int `json:"port"`
+	Port         int    `json:"port"`
+	DatabaseType string `json:"database"`
+	Source       string `json:"source"`
 }
 
 type BotConfig struct {

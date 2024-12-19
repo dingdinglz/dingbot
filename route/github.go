@@ -2,7 +2,6 @@ package route
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 
 	"github.com/LagrangeDev/LagrangeGo/message"
@@ -13,14 +12,13 @@ import (
 )
 
 func GithubWebhookRoute(ctx *fiber.Ctx) error {
-	eventName := ctx.Get("X-GitHub-Event")
-	fmt.Println(eventName)
 	if bot.DingQQBot == nil {
 		return JsonMessage(ctx, 0, "ok")
 	}
 	if !bot.DingQQBot.Online.Load() {
 		return JsonMessage(ctx, 0, "ok")
 	}
+	eventName := ctx.Get("X-GitHub-Event")
 	var webhookInfos map[string]interface{}
 	json.Unmarshal(ctx.Body(), &webhookInfos)
 	repositoryName := webhookInfos["repository"].(map[string]interface{})["full_name"].(string)
@@ -29,13 +27,12 @@ func GithubWebhookRoute(ctx *fiber.Ctx) error {
 	}
 	sendGroupsString := database.GithubWebhookGet(repositoryName)
 	sendGroups := strings.Split(sendGroupsString, ",")
-	fmt.Println(webhookInfos["action"].(string))
 	switch eventName {
 	case "push":
 		bot.DingQQBot.SendGroupMessage(11, []message.IMessageElement{message.NewText("11")})
 	case "star":
 		if webhookInfos["action"].(string) == "created" {
-			if database.StarExist(repositoryName, webhookInfos["sender"].(map[string]interface{})["login"].(string)) {
+			if !database.StarExist(repositoryName, webhookInfos["sender"].(map[string]interface{})["login"].(string)) {
 				database.StarAdd(repositoryName, webhookInfos["sender"].(map[string]interface{})["login"].(string))
 				messageSend := "项目" + repositoryName + "得到" + webhookInfos["sender"].(map[string]interface{})["login"].(string) + "のstar\n" + webhookInfos["repository"].(map[string]interface{})["html_url"].(string)
 				for _, i := range sendGroups {

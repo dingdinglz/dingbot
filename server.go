@@ -32,6 +32,7 @@ func ServerRun() {
 	if appconfig.Init {
 		ServerInitRun()
 	} else {
+		database.DatabaseInit()
 		ServerCommonRun()
 	}
 }
