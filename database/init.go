@@ -22,7 +22,7 @@ func DatabaseInit() {
 		tool.ErrorOut("database", "open error", err)
 		panic(err.Error())
 	}
-	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{}, &MessageTable{}, &PluginData{}, &StarTable{}, &GithubHookTable{})
+	DB.AutoMigrate(&KeyWordTable{}, &OpenTable{}, &StopTable{}, &MessageTable{}, &PluginData{}, &StarTable{}, &GithubHookTable{}, &UserTable{})
 
 	// 清空message表的内容，message表用于存seq与message对应，便于取撤回内容
 	DB.Delete(&MessageTable{}, "1=1")

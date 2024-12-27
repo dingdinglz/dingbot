@@ -106,3 +106,7 @@ func GithubRoute(ctx *fiber.Ctx) error {
 	pageMap["Githubs"] = database.GithubWebhookGetAll()
 	return ctx.Render("github", pageMap, "layout")
 }
+
+func LoginRoute(ctx *fiber.Ctx) error {
+	return ctx.Render("login", GenerateRenderMap("login"))
+}

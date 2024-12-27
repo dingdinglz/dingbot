@@ -50,6 +50,8 @@ func ServerInitRun() {
 }
 
 func ServerCommonRun() {
+	appconfig.MainServer.Use(route.LoginMiddleware)
+	appconfig.MainServer.Get("/login", route.LoginRoute)
 	appconfig.MainServer.Get("/", route.IndexRoute)
 	appconfig.MainServer.Get("/key", route.KeyWordRoute)
 	appconfig.MainServer.Get("/plugin-edit/:name", route.PluginEditRoute)
@@ -60,6 +62,7 @@ func ServerCommonRun() {
 	appconfig.MainServer.Post("/github/webhook", route.GithubWebhookRoute)
 
 	apiRoute := appconfig.MainServer.Group("/api")
+	apiRoute.Post("/login", route.ApiLoginRoute)
 
 	apiGetRoute := apiRoute.Group("/get")
 	apiGetRoute.Get("/bot", route.GetBotConfigRoute)

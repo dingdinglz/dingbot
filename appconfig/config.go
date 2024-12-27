@@ -30,4 +30,6 @@ func ConfigInit() {
 	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin"))
 	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin", "source"))
 	tool.DictoryCreateN(filepath.Join(rootPath, "data", "plugin"))
+
+	JWTSecret = GenerateRandString(10)
 }
