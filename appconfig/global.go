@@ -10,6 +10,7 @@ var (
 	AppConfigVar AppConfig
 	Version      string = "v2 beta"
 	BotConfigVar BotConfig
+	JWTSecret    string
 )
 
 type AppConfig struct {

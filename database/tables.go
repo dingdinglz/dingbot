@@ -65,3 +65,13 @@ type GithubHookTable struct {
 func (GithubHookTable) TableName() string {
 	return "github"
 }
+
+type UserTable struct {
+	ID       uint
+	Username string
+	Password string
+}
+
+func (UserTable) TableName() string {
+	return "user"
+}
