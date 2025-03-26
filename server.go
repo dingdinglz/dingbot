@@ -18,6 +18,9 @@ import (
 
 func ServerInit() {
 	rootPath, _ := os.Getwd()
+	if tool.FileIsExsits(filepath.Join(rootPath, "data", "qrcode.png")) {
+		os.Remove(filepath.Join(rootPath, "data", "qrcode.png"))
+	}
 	tEngine := html.New(filepath.Join(rootPath, "web", "index"), ".html")
 	tEngine.ShouldReload = true
 	tEngine.AddFunc("Open", func(Uin uint32, Typename string) bool {

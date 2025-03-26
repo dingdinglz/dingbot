@@ -20,12 +20,7 @@ func BotFetchQRcode(c *fiber.Ctx) error {
 	for bot.DingQQBot == nil {
 
 	}
-	for !tool.FileIsExsits(filepath.Join(rootPath, "data", "qrcode.png")) && !bot.DingQQBot.Online.Load() {
-
-	}
-
-	if bot.DingQQBot.Online.Load() {
-		return c.SendString("login success")
+	for !tool.FileIsExsits(filepath.Join(rootPath, "data", "qrcode.png")) {
 	}
 	res, _ := os.ReadFile(filepath.Join(rootPath, "data", "qrcode.png"))
 	b := base64.StdEncoding.EncodeToString(res)

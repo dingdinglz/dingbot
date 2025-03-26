@@ -1,49 +1,42 @@
 package bot
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
-	"strconv"
+	"time"
 
 	"github.com/LagrangeDev/LagrangeGo/client"
 	"github.com/LagrangeDev/LagrangeGo/client/auth"
-
-	"github.com/dingdinglz/dingbot/appconfig"
-	"github.com/dingdinglz/dingbot/tool"
 )
 
 func PrepareBot() {
 	rootPath, _ := os.Getwd()
-	i, _ := strconv.ParseUint(appconfig.BotConfigVar.Username, 10, 32)
-	DingQQBot = client.NewClient(uint32(i), auth.AppList["linux"]["3.1.2-13107"], "https://sign.lagrangecore.org/api/sign")
+	DingQQBot = client.NewClientEmpty()
 	LoadDeviceInfo()
 	DingQQBot.UseDevice(DeviceInfo)
-	if tool.FileIsExsits(filepath.Join(rootPath, "data", "sig.bin")) {
-		FirstLogin = false
-		res, _ := os.ReadFile(filepath.Join(rootPath, "data", "sig.bin"))
-		sig, err := auth.UnmarshalSigInfo(res, true)
-		if err != nil {
-			FirstLogin = true
-		} else {
-			DingQQBot.UseSig(sig)
-		}
-	} else {
-		FirstLogin = true
-	}
+	DingQQBot.UseVersion(auth.AppList["linux"]["3.2.15-30366"])
+	DingQQBot.AddSignServer("https://sign.lagrangecore.org/api/sign/30366")
+
 	DingQQBot.GroupMessageEvent.Subscribe(BotGroupMessageEvent)
 	DingQQBot.PrivateMessageEvent.Subscribe(BotPrivateMessageEvent)
 	DingQQBot.GroupRecallEvent.Subscribe(GroupRecallEvent)
-	err := DingQQBot.Login("", filepath.Join(rootPath, "data", "qrcode.png"))
-	if err != nil {
-		fmt.Println(err.Error())
+
+	qrcode, _, _ := DingQQBot.FetchQRCodeDefault()
+	os.WriteFile(filepath.Join(rootPath, "data", "qrcode.png"), qrcode, os.ModePerm)
+	for {
+		retCode, _ := DingQQBot.GetQRCodeResult()
+		if retCode.Waitable() {
+			time.Sleep(1 * time.Second)
+		}
+		if retCode.Success() {
+			break
+		}
 	}
-	sigBin, e := DingQQBot.Sig().Marshal()
-	os.WriteFile(filepath.Join(rootPath, "data", "sig.bin"), sigBin, os.ModePerm)
+
+	os.Remove(filepath.Join(rootPath, "data", "qrcode.png"))
+	_, e := DingQQBot.QRCodeLogin()
 	if e != nil {
-		fmt.Println(e.Error())
+		panic(e)
 	}
-	if tool.FileIsExsits(filepath.Join(rootPath, "data", "qrcode.png")) {
-		os.Remove(filepath.Join(rootPath, "data", "qrcode.png"))
-	}
+
 }

@@ -1,7 +1,6 @@
 package bot
 
 import (
-	"encoding/json"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -28,9 +27,6 @@ func LoadDeviceInfo() {
 		DeviceInfo.DeviceName = "Dingbot-" + generateRandomString(8)
 		DeviceInfo.Save(filepath.Join(rootPath, "data", "device.json"))
 	} else {
-		var i DeviceStruct
-		res, _ := os.ReadFile(filepath.Join(rootPath, "data", "device.json"))
-		json.Unmarshal(res, &i)
-		DeviceInfo = &auth.DeviceInfo{Guid: i.GUID, KernelVersion: i.KernelVersion, SystemKernel: i.SystemKernel, DeviceName: i.DeviceName}
+		DeviceInfo, _ = auth.LoadOrSaveDevice(filepath.Join(rootPath, "data", "device.json"))
 	}
 }
